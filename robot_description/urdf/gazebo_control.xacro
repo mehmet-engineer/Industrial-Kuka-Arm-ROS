@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="gazebo_control">
+
+    <!-- Gazebo ROS Control Plugin -->
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so" />
+    </gazebo>
+
+    <!-- Gazebo Link Attach Plugin -->
+    <!-- <gazebo>
+      <plugin name="ros_link_attacher_plugin" filename="libgazebo_ros_link_attacher.so"/>
+    </gazebo> -->
+    
+    
+
+
+  </xacro:macro>
+</robot>

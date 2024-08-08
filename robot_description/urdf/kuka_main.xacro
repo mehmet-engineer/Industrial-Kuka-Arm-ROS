@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="kuka">
+
+   <xacro:include filename="$(find robot_description)/urdf/kuka_arm.xacro"/>
+   <xacro:include filename="$(find robot_description)/urdf/gripper.xacro"/>
+   <xacro:include filename="$(find robot_description)/urdf/transmissions.xacro"/>
+   <xacro:include filename="$(find robot_description)/urdf/gazebo_control.xacro"/>
+
+   <xacro:kuka_arm />
+   <xacro:gripper end_tool_link="link_6"/>
+   <xacro:transmissions />
+   <xacro:gazebo_control />
+
+</robot>

@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:macro name="kuka_arm">
+
+    <link name="world"/>
+
+    <joint name="world_fixed_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <parent link="world" />
+      <child link="base_link" />
+    </joint>
+
+    <link name="base_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="15"/>
+        <inertia ixx="60" ixy="0" ixz="0" iyy="70" iyz="0" izz="100"/>
+      </inertial>
+      <visual>
+        <origin rpy="-1.570796327 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/base_link.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="-1.570796327 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/base_link.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_1" type="revolute">
+      <origin rpy="0 0 0" xyz="0 0 0.33"/>
+      <parent link="base_link"/>
+      <child link="link_1"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="300" lower="-3.2288592050000005" upper="3.2288592050000005" velocity="2.1467550390000003"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+
+    <link name="link_1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0.4"/>
+        <mass value="13"/>
+        <inertia ixx="30" ixy="0" ixz="0" iyy="50" iyz="0" izz="50"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_1.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_1.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_2" type="revolute">
+      <origin rpy="0 0 0" xyz="0.35 0 0.42"/>
+      <parent link="link_1"/>
+      <child link="link_2"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="300" lower="-0.785398185" upper="1.4835299050000001" velocity="2.007128695"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+
+    <link name="link_2">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0.44751"/>
+        <mass value="9"/>
+        <inertia ixx="40" ixy="0" ixz="0" iyy="40" iyz="0" izz="10"/>
+      </inertial>
+      <visual>
+        <origin rpy="-1.570796327 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_2.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_2.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_3" type="revolute">
+      <origin rpy="0 0 0" xyz="0 0 1.25"/>
+      <parent link="link_2"/>
+      <child link="link_3"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="300" lower="-3.6651915300000004" upper="1.134464045" velocity="1.954768816"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+
+    <link name="link_3">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.18842 0.18344 -0.042799"/>
+        <mass value="7"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="10" iyz="0" izz="10"/>
+      </inertial>
+      <visual>
+        <origin rpy="-1.570796327 0 0" xyz="0 -0.184 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_3.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 -0.184 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_3.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_4" type="revolute">
+      <origin rpy="0 0 0" xyz="0.96 0 -0.054"/>
+      <parent link="link_3"/>
+      <child link="link_4"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="300" lower="-6.10865255" upper="6.10865255" velocity="3.124139447"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+
+    <link name="link_4">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0.27146 -0.007326 0"/>
+        <mass value="1"/>
+        <inertia ixx="0.18" ixy="0" ixz="0" iyy="0.55" iyz="0" izz="0.64"/>
+      </inertial>
+      <visual>
+        <origin rpy="-1.570796327 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_4.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_4.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_5" type="revolute">
+      <origin rpy="0 0 0" xyz="0.54 0 0"/>
+      <parent link="link_4"/>
+      <child link="link_5"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="300" lower="-2.1816616250000003" upper="2.1816616250000003" velocity="3.0019663960000003"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+
+    <link name="link_5">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.7"/>
+        <inertia ixx="0.04" ixy="0" ixz="0" iyy="0.068" iyz="0" izz="0.068"/>
+      </inertial>
+      <visual>
+        <origin rpy="-1.570796327 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_5.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_5.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint_6" type="revolute">
+      <origin rpy="0 0 0" xyz="0.2 0 0"/>
+      <parent link="link_5"/>
+      <child link="link_6"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="300" lower="-6.10865255" upper="6.10865255" velocity="3.8222711670000002"/>
+      <dynamics damping="0.1" friction="0.01"/>
+    </joint>
+    
+    <link name="link_6">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.004" ixy="0" ixz="0" iyy="0.003" iyz="0" izz="0.003"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/visual/link_6.dae"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.75294 0.75294 0.75294 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_description/meshes/collision/link_6.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    
+  </xacro:macro>
+</robot>
