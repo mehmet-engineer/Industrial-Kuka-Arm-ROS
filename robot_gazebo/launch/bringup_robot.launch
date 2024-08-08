@@ -1,0 +1,26 @@
+<launch>
+
+    <arg name="rviz" default="false" />
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robot_description)/urdf/kuka_main.xacro"/>
+
+    <rosparam file="$(find robot_gazebo)/config/ros_controllers.yaml"/>
+
+    <node name="Controller_Spawner" pkg="controller_manager" type="spawner" 
+        args="kuka_arm_joint_state_controller kuka_arm_trajectory_controller gripper_controller"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+        <arg name="gui" value="true"/>
+        <arg name="verbose" value="false"/>
+    </include>
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" respawn="false" 
+        args="-urdf -param robot_description -model kuka_arm"/>
+
+    <node name="RSP" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+    
+    <include file="$(find kuka_moveit_config)/launch/start_move_group_rviz.launch" >
+        <arg name="rviz" value="$(arg rviz)" />
+    </include>
+    
+</launch>
